@@ -18,6 +18,7 @@ class App extends React.Component {
   getLocationInfo = async (e) => {
     e.preventDefault();
     const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_CITY_KEY}&q=${this.state.searchQuery}&format=json`;
+    console.log(url);
     try {
       const location = await axios.get(url);
       const locationArray = location.data;
@@ -25,16 +26,18 @@ class App extends React.Component {
         location: locationArray[0],
         displayResults: true,
         imgSrc: `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_CITY_KEY}&center=${locationArray[0].lat},${locationArray[0].lon}&zoom=13`,
-        lon: locationArray[0].lon,
-        lat: locationArray[0].lat
+        longitude: locationArray[0].lon,
+        latitude: locationArray[0].lat
       });
     } catch (error) {
-      console.log(`😱 Axios request failed: ${error}`);
+      console.error(`Axios request failed: ${error}`);
     }
   }
   render() {
     return (
       <>
+      <div>
+        <h1>Welcome</h1>
             <Container>
               <Form onSubmit={this.getLocationInfo} >
                 <Form.Group controlId="">
@@ -51,14 +54,14 @@ class App extends React.Component {
             {this.state.displayResults &&
               <Map
                 displayName={this.state.location.display_name}
-                longitude={this.state.lon}
-                latitude={this.state.lat}
+                longitude={this.state.longitude}
+                latitude={this.state.latitude}
                 imgSrc={this.state.imgSrc}
               />
             }
+      </div>
       </>
     )
   }
 }
-
 export default App;
