@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Container, Form, Button, Col } from 'react-bootstrap'
+import { Container, Form, Button} from 'react-bootstrap'
 import Map from './map';
 
 
