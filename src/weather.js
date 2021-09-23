@@ -1,6 +1,6 @@
 import React from 'react';
 import DailyWeather from './dailyWeather'
-import { Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
 class Weather extends React.Component {
 
